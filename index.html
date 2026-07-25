@@ -549,15 +549,16 @@
       }
     }
 
-    /* ————— PRINT: A4 with 6 folders ————— */
+    /* ————— PRINT: A4 with 10 simple flyers ————— */
     @page {
       size: A4 portrait;
-      margin: 8mm;
+      margin: 10mm;
     }
 
     @media print {
       body {
         background: #fff;
+        color: #111;
       }
 
       .site {
@@ -567,190 +568,40 @@
       .print-sheet {
         display: grid !important;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(3, minmax(0, 1fr));
-        gap: 3mm;
+        grid-template-rows: repeat(5, 1fr);
+        gap: 4mm 5mm;
         width: 100%;
-        height: calc(297mm - 16mm);
+        height: calc(297mm - 20mm);
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
-      .folder {
-        min-width: 0;
-        min-height: 0;
-        height: 100%;
-        background:
-          radial-gradient(circle at 100% 0%, rgba(217, 111, 74, 0.13), transparent 34%),
-          linear-gradient(155deg, #fffdf8 0%, #f4eee2 100%);
-        border: 0.35mm solid #d2c6b2;
-        position: relative;
-        overflow: hidden;
+      .flyer {
         display: flex;
         flex-direction: column;
-        padding: 5mm;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 1.6mm;
+        padding: 3mm 4mm;
+        background: #ececec;
         break-inside: avoid;
-        color: #14181a;
+        color: #111;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
-      .folder::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1.8mm;
-        background: linear-gradient(90deg, #d96f4a 0 36%, #d4a960 36% 64%, #8fa48f 64%);
-        pointer-events: none;
-      }
-
-      .folder-top {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 3mm;
-        padding-bottom: 2.5mm;
-        margin-bottom: 3mm;
-        border-bottom: 0.3mm solid rgba(20, 24, 26, 0.16);
-        position: relative;
-        z-index: 1;
-      }
-
-      .folder-top svg {
-        width: 13mm;
-        height: 13mm;
-        flex: 0 0 13mm;
-      }
-
-      .folder-brand-copy {
-        min-width: 0;
-      }
-
-      .folder-brand {
-        font-family: var(--font-display);
-        font-size: 16pt;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        line-height: 1;
-      }
-
-      .folder-tag {
-        font-family: var(--font-body);
-        font-size: 5pt;
-        font-weight: 500;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: #6d7d6d;
-        margin-top: 1.2mm;
-        white-space: nowrap;
-      }
-
-      .folder-heading {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: end;
-        gap: 3mm;
-        margin-bottom: 3mm;
-        position: relative;
-        z-index: 1;
-      }
-
-      .folder-title {
-        font-family: var(--font-display);
-        font-size: 15pt;
-        font-weight: 600;
-        line-height: 0.95;
-        letter-spacing: -0.01em;
-      }
-
-      .folder-sub {
-        font-family: var(--font-body);
-        font-size: 5.2pt;
-        font-weight: 600;
-        font-style: normal;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #b85436;
-        border: 0.3mm solid rgba(184, 84, 54, 0.5);
-        border-radius: 999px;
-        padding: 1.2mm 2mm;
-        white-space: nowrap;
-      }
-
-      .folder-services {
-        list-style: none;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5mm;
-        flex: 1;
-        align-content: start;
-        position: relative;
-        z-index: 1;
-      }
-
-      .folder-services li {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 1.8mm;
-        min-height: 8mm;
-        padding: 1.3mm 2mm;
-        font-family: var(--font-body);
-        font-size: 7.2pt;
-        font-weight: 500;
+      .flyer-title {
+        font-size: 9pt;
+        font-weight: 700;
         letter-spacing: 0.02em;
-        color: #273136;
-        background: rgba(143, 164, 143, 0.1);
-        border: 0.25mm solid rgba(109, 125, 109, 0.22);
-        border-radius: 1.5mm;
-      }
-
-      .folder-services li::before {
-        content: "";
-        width: 1.7mm;
-        height: 1.7mm;
-        flex: 0 0 1.7mm;
-        border-radius: 50%;
-        background: #d96f4a;
-        box-shadow: 0 0 0 0.6mm rgba(217, 111, 74, 0.14);
-      }
-
-      .folder-services li:last-child {
-        grid-column: 1 / -1;
-        width: calc((100% - 1.5mm) / 2);
-        justify-self: center;
-      }
-
-      .folder-contact {
-        margin-top: auto;
-        min-height: 11mm;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 3mm;
-        padding: 2mm 3mm;
-        border-radius: 1.8mm;
-        background: #1c2225;
-        color: #f4eee2;
-        position: relative;
-        z-index: 1;
-      }
-
-      .folder-contact .label {
-        font-family: var(--font-body);
-        font-size: 5pt;
-        font-weight: 600;
-        letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: #d4a960;
+        line-height: 1.25;
       }
 
-      .folder-contact .phone {
-        font-family: var(--font-display);
-        font-size: 11.5pt;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        white-space: nowrap;
+      .flyer-line {
+        font-size: 8.5pt;
+        font-weight: 400;
+        line-height: 1.3;
       }
     }
   </style>
@@ -876,7 +727,7 @@
       <footer>
         <p class="foot-brand">Nestor</p>
         <p>Arreglos de ropa · Costura en general</p>
-        <p>“Imprimir folders” genera 6 folders en una hoja A4</p>
+        <p>“Imprimir folders” genera 10 volantes en una hoja A4</p>
       </footer>
     </div>
   </div>
@@ -935,37 +786,19 @@
   </svg>
 
   <script>
-    const SERVICES = ["Parches", "Ruedos", "Elásticos", "Achicar", "Agrandar"];
-
-    function folderHTML() {
+    function flyerHTML() {
       return `
-        <article class="folder">
-          <div class="folder-top">
-            <svg viewBox="0 0 96 96" role="img" aria-label="Logo Nestor">
-              <use href="#logo-symbol" />
-            </svg>
-            <div class="folder-brand-copy">
-              <div class="folder-brand">Nestor</div>
-              <div class="folder-tag">Costura · Arreglos</div>
-            </div>
-          </div>
-          <div class="folder-heading">
-            <h2 class="folder-title">Arreglos<br />de ropa</h2>
-            <p class="folder-sub">Costura en general</p>
-          </div>
-          <ul class="folder-services">
-            ${SERVICES.map((s) => `<li>${s}</li>`).join("")}
-          </ul>
-          <div class="folder-contact">
-            <div class="label">WhatsApp</div>
-            <div class="phone">11-6580 9035</div>
-          </div>
+        <article class="flyer">
+          <p class="flyer-title">Arreglos de ropa / Costura en general</p>
+          <p class="flyer-line">Parches - Ruedos - Elásticos</p>
+          <p class="flyer-line">Achicar - Agrandar</p>
+          <p class="flyer-line">Solo WhatsApp 11 6580 9035</p>
         </article>
       `;
     }
 
     document.getElementById("print-sheet").innerHTML =
-      Array.from({ length: 6 }, folderHTML).join("");
+      Array.from({ length: 10 }, flyerHTML).join("");
   </script>
 </body>
 </html>
